@@ -1,0 +1,16 @@
+README.md
+setup.py
+vidaug/__init__.py
+vidaug.egg-info/PKG-INFO
+vidaug.egg-info/SOURCES.txt
+vidaug.egg-info/dependency_links.txt
+vidaug.egg-info/not-zip-safe
+vidaug.egg-info/top_level.txt
+vidaug/augmentors/__init__.py
+vidaug/augmentors/affine.py
+vidaug/augmentors/crop.py
+vidaug/augmentors/flip.py
+vidaug/augmentors/geometric.py
+vidaug/augmentors/group.py
+vidaug/augmentors/intensity.py
+vidaug/augmentors/temporal.py

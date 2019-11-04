@@ -21,8 +21,9 @@ class HorizontalFlip(object):
     """
     Horizontally flip the video.
     """
-
+    
     def __call__(self, clip):
+        print ('Horizontal Flip')
         if isinstance(clip[0], np.ndarray):
             return [np.fliplr(img) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
@@ -37,8 +38,9 @@ class VerticalFlip(object):
     """
     Vertically flip the video.
     """
-
+    
     def __call__(self, clip):
+        print ('Vertical Flip')
         if isinstance(clip[0], np.ndarray):
             return [np.flipud(img) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
