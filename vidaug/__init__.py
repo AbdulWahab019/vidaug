@@ -1,11 +1,10 @@
 import cv2
 import numpy as np
 import os
-
 from PIL import Image, ImageSequence
 import augmentors as va
-
 from os.path import isfile, join
+
 
 def image_loader(path, modality="RGB"):
     with open(path, 'rb') as f:
@@ -37,48 +36,48 @@ def get_frames_array(path):
         return frames, size
 
 path = r"C:/Users/wahab/Desktop/FYP/This"
-save_path = r"C:/Users/wahab/Desktop/FYP/Augmented Videos/"
+save_path = r"C:/Users/wahab/Desktop/FYP/"
 dir = os.listdir(path)
 
 for file in dir:
         print (file)
         
         if not os.path.exists(save_path+file):
-                        os.mkdir(save_path+file)
+                os.mkdir(save_path+file)
 
         dirs = os.listdir(path+'/'+file) 
         for action in dirs:
                 print (action)
         
-                frames = []
-                fps = 30
-                frames, size = get_frames_array(path+'/'+file+'/'+action+'/')
-		
-		# Horizontal Flip
-		frames[0]
-                sometimes = lambda aug: va.Sometimes(1, aug) # Used to apply augmentor with 100% probability
-                seq = va.Sequential([   
-                sometimes(va.HorizontalFlip()) 
-                ])
+        frames = []
+        fps = 30
+        frames, size = get_frames_array(path+'/'+file+'/')
+        frames[0]
+        # Horizontal Flip
+        
+        sometimes = lambda aug: va.Sometimes(1, aug) # Used to apply augmentor with 100% probability
+        seq = va.Sequential([   
+        sometimes(va.HorizontalFlip()) 
+        ])
 
-                video_aug = seq(frames)
-                out = cv2.VideoWriter(save_path+file+'/'+action+'_HorizontalFlip.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
-                for i in range(len(video_aug)):
-                        out.write(video_aug[i])
-                out.release()
+        video_aug = seq(frames)
+        out = cv2.VideoWriter(save_path+file+'/'+action+'_HorizontalFlip.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+        for i in range(len(video_aug)):
+                out.write(video_aug[i])
+        out.release()
 
-                # Vertical Flip
-                frames[0]
-		sometimes = lambda aug: va.Sometimes(1, aug) # Used to apply augmentor with 100% probability
-                seq = va.Sequential([  
-                sometimes(va.VerticalFlip()) 
-                ])
+        # Vertical Flip
+        frames[0]
+        sometimes = lambda aug: va.Sometimes(1, aug) # Used to apply augmentor with 100% probability
+        seq = va.Sequential([  
+        sometimes(va.VerticalFlip()) 
+        ])
 
-                video_aug = seq(frames)
-                out = cv2.VideoWriter(save_path+file+'/'+action+'_VerticalFlip.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
-                for i in range(len(video_aug)):
-                        out.write(video_aug[i])
-                out.release()
+        video_aug = seq(frames)
+        out = cv2.VideoWriter(save_path+file+'/'+action+'_VerticalFlip.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+        for i in range(len(video_aug)):
+                out.write(video_aug[i])
+        out.release()
 
                 # Below is an example to use some other augmentation techniques.
 
